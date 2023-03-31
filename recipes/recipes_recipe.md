@@ -30,11 +30,11 @@ Put the different nouns in this table. Replace the example with your own nouns.
 
 | Record                | Properties          |
 | --------------------- | ------------------  |
-| recipe                 | recipe, name, avg_cooking_time(minutes), rating(1-5)
+| recipe                 | name, avg_cooking_time(minutes), rating(1-5)
 
-Name of the table (always plural): `albums` 
+Name of the table (always plural): `recipes` 
 
-Column names: `title`, `release_year`
+Column names: `name`, `avg_cooking_time(mins)`, `rating(1-5)`
 
 ## 3. Decide the column types.
 
@@ -45,30 +45,32 @@ Most of the time, you'll need either `text`, `int`, `bigint`, `numeric`, or `boo
 Remember to **always** have the primary key `id` as a first column. Its type will always be `SERIAL`.
 
 ```
-# EXAMPLE:
+# recipes:
 
 id: SERIAL
-title: text
-release_year: int
+name: text
+avg_cooking_time(mins): int
+rating(1-5): int
 ```
 
 ## 4. Write the SQL.
 
 ```sql
 -- EXAMPLE
--- file: albums_table.sql
+-- file: recipes_table.sql
 
 -- Replace the table name, columm names and types.
 
 CREATE TABLE albums (
   id SERIAL PRIMARY KEY,
-  title text,
-  release_year int
+  name text
+  avg_cooking_time(mins) int
+  rating(1-5) int
 );
 ```
 
 ## 5. Create the table.
 
 ```bash
-psql -h 127.0.0.1 database_name < albums_table.sql
+psql -h 127.0.0.1 recipes_directory < recipes_table.sql
 ```
